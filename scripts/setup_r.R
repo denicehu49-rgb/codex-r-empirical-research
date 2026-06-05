@@ -11,38 +11,43 @@ if (getRversion() < "4.3.0") stop("Requires R >= 4.3.0; you have ", R.version.st
 
 REQUIRED_PKGS <- c(
   # --- core infrastructure ---------------------------------------------------
-  "renv",                         # environment locking (must be first)
-  "tidyverse", "haven",           # data wrangling + .dta import
-  "here", "fs", "glue",           # paths + small utilities
-  "log4r",                        # structured logging
+  "renv",
+  "tidyverse", "haven",
+  "here", "fs", "glue",
+  "log4r",
 
   # --- regression core -------------------------------------------------------
-  "fixest",                       # high-dim FE regression + clustered SEs (OLS, FE, IV, Sun-Abraham)
-  "sandwich", "lmtest",           # alternative HC robust SE machinery
-  "estimatr",                     # lm_robust / iv_robust (HC2/CR2 by default)
-  "AER", "ivmodel",               # IV diagnostics + Anderson-Rubin CIs
-  "fwildclusterboot",             # wild-cluster bootstrap for G < ~30
-  "survey",                       # complex survey weights / svyglm
+  "fixest",
+  "sandwich", "lmtest",
+  "estimatr",
+  "AER", "ivmodel",
+  "fwildclusterboot",
+  "survey",
 
   # --- staggered / heterogeneity-robust DiD ----------------------------------
-  "did",                          # Callaway-Sant'Anna (att_gt)
-  "did2s",                        # Borusyak-Jaravel-Spiess two-stage DiD
-  "DIDmultiplegt",                # de Chaisemartin-D'Haultfoeuille
-  "staggered",                    # Roth-Sant'Anna efficient estimator
-  "HonestDiD",                    # parallel-trends sensitivity bounds
+  "did",
+  "did2s",
+  "DIDmultiplegt",
+  "staggered",
+  "HonestDiD",
 
   # --- double / debiased machine learning ------------------------------------
-  "ddml",                         # DDML for partial linear / IV models (Ahrens et al.)
-  "glmnet", "ranger", "xgboost",  # default first-stage learners for ddml
+  "ddml",
+  "glmnet", "ranger", "xgboost",
 
   # --- survival analysis -----------------------------------------------------
-  "survival",                     # Cox PH (coxph), Surv(), survfit() — also ships with R
-  "survminer",                    # ggsurvplot, ggforest
+  "survival",
+  "survminer",
 
   # --- publication output ----------------------------------------------------
-  "modelsummary", "kableExtra",   # tables (.tex, .csv, .html)
-  "ggplot2", "patchwork",         # figures + multi-panel composition
-  "scales", "broom"               # axis breaks + tidy(model)
+  "modelsummary", "kableExtra",
+  "ggplot2", "patchwork",
+  "scales", "broom",
+  "gtsummary", "flextable", "officer",
+
+  # --- mediation / sensitivity ----------------------------------------------
+  "lavaan",
+  "EValue"
 )
 
 cat("== R Research Pipeline: setup ==\n")
