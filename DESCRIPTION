@@ -21,7 +21,15 @@ Imports:
     here,
     fs,
     glue,
-    log4r
+    log4r,
+    readr,
+    tibble,
+    broom,
+    gtsummary,
+    flextable,
+    officer,
+    lavaan,
+    EValue
 Suggests:
     renv,
     quarto,
