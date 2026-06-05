@@ -114,7 +114,7 @@ analysis_data <- clean_data |>
     hibp = as_binary01(.data$r3hibpe),
     diabetes = as_binary01(.data$r3diabe),
     heart_disease = as_binary01(.data$r3hearte),
-    comorbidity_count = rowSums(dplyr::pick(.data$hibp, .data$diabetes, .data$heart_disease), na.rm = TRUE),
+    comorbidity_count = rowSums(dplyr::pick(hibp, diabetes, heart_disease), na.rm = TRUE),
     any_comorbidity = dplyr::if_else(.data$comorbidity_count > 0, 1L, 0L),
 
     # 因子顺序用于表格与作图。
@@ -136,10 +136,11 @@ analysis_vars <- c(
   "comorbidity_count", "any_comorbidity", "r3cesd10", "baseline_depressed"
 )
 
+n_missing <- vapply(analysis_vars, function(v) sum(is.na(analysis_data[[v]])), integer(1))
 missingness <- tibble::tibble(
   variable = analysis_vars,
-  n_missing = vapply(analysis_vars, function(v) sum(is.na(analysis_data[[v]])), integer(1)),
-  pct_missing = round(100 * .data$n_missing / nrow(analysis_data), 2)
+  n_missing = n_missing,
+  pct_missing = round(100 * n_missing / nrow(analysis_data), 2)
 )
 
 readr::write_csv(missingness, proj_path("output", "tables", "analysis_sample_missingness.csv"))
