@@ -116,7 +116,6 @@ if (nrow(table1_data) == 0 || !has_variation(table1_data, "rxlung_group")) {
     gtsummary::as_flex_table(tbl1),
     path = file.path(table_dir, "table1_by_rxlung.docx")
   )
-  readr::write_csv(table1_data, file.path(table_dir, "table1_analysis_dataset.csv"))
   cat("Table 1 已保存：output/tables/table1_by_rxlung.docx\n")
 }
 
